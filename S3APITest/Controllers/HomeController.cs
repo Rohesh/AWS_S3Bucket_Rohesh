@@ -26,6 +26,8 @@ namespace AwsS3Bucket.Controllers
             this.S3Client = s3Client;
         }
 
+        //Creating a Folder
+
         [HttpPost("CreateFolder")]
         public async Task<int> CreateFolder(string bucketname, string newFolderName, string prefix = "")
         {
@@ -37,9 +39,9 @@ namespace AwsS3Bucket.Controllers
 
         }
 
-
+        //Sample File
         public string filePath = "D:\\Test.json";
-
+        //To Upload a FIle
         [HttpPost("UploadFile")]
         public async Task<int> UploadFile(string bucketName, string keyName)
         {
@@ -76,8 +78,10 @@ namespace AwsS3Bucket.Controllers
             }
         }
 
-        [HttpGet("ReadS3Object")]
-        public async Task<string> ReadS3Object(string BUCKET_NAME, string S3_KEY)
+        //To Get all the objects
+
+        [HttpGet("GetS3Object")]
+        public async Task<string> GetS3Object(string BUCKET_NAME, string S3_KEY)
         {
             var client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
             GetObjectRequest request = new GetObjectRequest();
@@ -95,9 +99,9 @@ namespace AwsS3Bucket.Controllers
             return content;
         }
 
-
-        [HttpGet("ReadObjectbyID")]
-        public async Task<masterjson> ReadObjectbyID(int id)
+        //To Get a specific ID
+        [HttpGet("GetObjectbyID")]
+        public async Task<masterjson> GetObjectbyID(int id)
         {
             var client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
             GetObjectRequest request = new GetObjectRequest();
@@ -116,8 +120,9 @@ namespace AwsS3Bucket.Controllers
             return result;
         }
 
-        [HttpPost("CreateData")]
-        public async Task<string> CreateData(string firstname, string lastname, int id)
+        //To Create A record
+        [HttpPost("CreateRecord")]
+        public async Task<string> CreateRecord(string firstname, string lastname, int id)
         {
             masterjson inst = new masterjson();
             inst.firstName = firstname;
@@ -157,8 +162,9 @@ namespace AwsS3Bucket.Controllers
 
         }
 
-        [HttpPost("UpdateData")]
-        public async Task<string> UpdateData(string firstname, string lastname, int id)
+        //To Update a Record
+        [HttpPost("UpdateRecord")]
+        public async Task<string> UpdateRecord(string firstname, string lastname, int id)
         {
             masterjson inst = new masterjson();
             inst.firstName = firstname;
@@ -199,8 +205,9 @@ namespace AwsS3Bucket.Controllers
 
         }
 
-        [HttpDelete("DeleteData")]
-        public  async Task<string> DeleteData(int id)
+        //To delete a Record
+        [HttpDelete("DeleteRecord")]
+        public  async Task<string> DeleteRecord(int id)
         {
             masterjson inst = new masterjson();
 
